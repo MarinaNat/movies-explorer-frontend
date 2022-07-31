@@ -2,7 +2,7 @@
     max-width: 1280px;
     margin: 0 auto;
     box-sizing: border-box;
-    padding: 110px 70px;
+    padding: 110px 70px 0;
 }
 
 .about-me__content {
@@ -74,7 +74,6 @@
 }
 
 .about-me__photo {
-    /* border-radius: 10px; */
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -99,7 +98,7 @@
 
 @media screen and (max-width: 768px) {
     .about-me {
-        padding: 90px 50px;
+        padding: 90px 50px 0;
     }
 
     .about-me__name {
@@ -140,7 +139,7 @@
 
 @media screen and (max-width: 566px) {
     .about-me {
-        padding: 70px 14px;
+        padding: 70px 14px 0;
     }
 
     .about-me__title {
