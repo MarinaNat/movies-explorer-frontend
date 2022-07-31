@@ -1,7 +1,7 @@
 .about-project {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 110px 70px;
+    padding: 110px 70px 98px;
 }
 
 .about-project__title {
@@ -80,7 +80,7 @@
 @media screen and (max-width: 768px) {
     .about-project {
         margin: 0 auto;
-        padding: 90px 50px;
+        padding: 90px 50px 78px;
     }
 
     .about-project__stage {
@@ -105,7 +105,7 @@
 
 @media screen and (max-width: 541px) {
     .about-project {
-        padding: 72px 18px;
+        padding: 72px 18px 60px;
     }
 
     .about-project__title {
