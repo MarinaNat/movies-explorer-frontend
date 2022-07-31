@@ -1,0 +1,28 @@
+.navtab {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 25px;
+    background: var(--color-bg-landing-tech);
+}
+
+.navtab__link {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    text-decoration: none;
+    border-bottom: 1px var(--color-white) solid;
+}
+
+@media screen and (max-width: 475px) {
+    .navtab {
+        gap: 24px;
+        padding: 23px;
+        background: var(--color-bg-landing-tech);
+    }
+
+    .navtab__link {
+        font-size: 11px;
+    }
+}
