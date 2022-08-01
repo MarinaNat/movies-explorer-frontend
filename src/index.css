@@ -13,6 +13,7 @@
 
 :root {
   --color-bg: #202020;
+  --color-bg-input: #222222;
   --color-bg-light: #313131;
   --color-bg-landing-hero: #073042;
   --color-black: #000;
@@ -23,12 +24,15 @@
   --color-form-input: #2F2F2F;
   --color-blue: #4285F4;
   --color-green: #3DDC84;
-  --color-enter: #2BE080;
+  /* --color-enter: #2BE080; */
   --color-gray: #DADADA;
   --color-text-gray: #8B8B8B;
   --color-line-black: #424242;
   --color-line-gray: #E6E6E6;
   --color-line-dark-gray: #424242;
+  --color-line-input: #505050;
+  --color-checkbox: #EBEBEB;
+  --color-checkbox-checked: #2BE080;
 
 }
 
@@ -63,6 +67,14 @@ h1 {
   font-weight: 400;
 }
 
+.link_button {
+  cursor: pointer;
+  transition: .2s ease-in;
+}
+
+.link_button:hover {
+  opacity: 0.8;
+}
 /* code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

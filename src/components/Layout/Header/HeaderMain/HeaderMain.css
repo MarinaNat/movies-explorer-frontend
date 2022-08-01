@@ -53,7 +53,7 @@
     background-image: url(../../../../images/account.svg);
     background-repeat: no-repeat;
     background-position: center;
-    padding-right: 3px;
+    margin-right: 3px;
 }
 
 @media screen and (max-width: 768px) {

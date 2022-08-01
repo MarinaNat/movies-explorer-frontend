@@ -3,7 +3,7 @@
 .navigation {
     display: flex;
     justify-content: space-between;
-    width: 241px;
+    width: 231px;
 }
 
 .navigation__link {

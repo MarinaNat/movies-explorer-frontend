@@ -1,0 +1,42 @@
+.movies {
+    max-width: 1280px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 70px 70px 80px;
+    background: var(--color-bg);
+}
+
+.movies__more-button {
+    box-sizing: border-box;
+    width: 320px;
+    height: 36px;
+    background: var(--color-bg);
+    border: 1px solid var(--color-line-dark-gray);
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    color: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .movies {
+        padding: 80px 30px 120px;
+    }
+    
+}
+
+@media (max-width: 475px) {
+    .movies {
+        padding: 80px 10px 120px;
+    }
+
+    .movies__more-button {
+        max-width: 240px;
+    }
+    
+}
