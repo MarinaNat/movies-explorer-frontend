@@ -2,7 +2,7 @@
     max-width: 1280px;
     margin: 0 auto;
     box-sizing: border-box;
-    padding: 0 70px 125px;
+    padding: 0 70px 106px;
 }
 
 .portfolio__title {
@@ -16,20 +16,20 @@
 
 .portfolio__links {
     margin-bottom: 20px;
+    border-bottom: solid 1px var(--color-line-black);
 }
 
 .portfolio__links:last-child {
     margin: 0;
+    border-bottom: none;
 }
 
 .portfolio__link {
     display: flex;
     justify-content: space-between;
     min-height: 69px;
-    border-bottom: solid 1px var(--color-line-black);
+    /* border-bottom: solid 1px var(--color-line-black); */
 }
-
-
 
 .portfolio__link-text {
     font-style: normal;
@@ -47,11 +47,16 @@
 
 @media screen and (max-width: 768px) {
     .portfolio {
-        padding: 0 50px 90px;
+        padding: 0 50px 71px;
     }
 
-    .portfolio__link {
+    .portfolio__links {
         border-bottom: solid 1px var(--color-line-gray);
+    }
+
+    .portfolio__links:last-child {
+        margin: 0;
+        border-bottom: none;
     }
 
     .portfolio__link-text {
@@ -65,7 +70,7 @@
 
 @media screen and (max-width: 566px) {
     .portfolio {
-        padding: 0 14px 40px;
+        padding: 0 14px 49px;
     }
 
     .portfolio__title {
