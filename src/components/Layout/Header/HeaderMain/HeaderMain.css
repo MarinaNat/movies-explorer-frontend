@@ -60,4 +60,21 @@
     .header__navigation {
         display: none;
     }
+
+    .header__nav-button {
+        display: block;
+        background-color: inherit;
+        background-image: url(../../../../images/menu.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 44px;
+        height: 44px;
+    }
+}
+
+@media screen and (max-width: 475px) {
+    .header__nav-button {
+        width: 40px;
+        height: 43px;
+    }
 }

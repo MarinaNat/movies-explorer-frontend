@@ -7,10 +7,10 @@ import Navigation from '../../Navigation/Navigation';
 import { NavLink } from 'react-router-dom';
 
 const setActive = ({ isActive }) => isActive
-  ? 'header__profile-link_active'
-  : 'header__profile-link';
+    ? 'header__profile-link_active'
+    : 'header__profile-link';
 
-const HeaderMain = () => {
+const HeaderMain = ({ handleOpenMenu }) => {
     return (
         <header className='header header_main'>
             <Link to='/' className='logo__header'>
@@ -23,6 +23,10 @@ const HeaderMain = () => {
                     <div className='header__profile-link_icon'></div>
                 </NavLink>
             </div>
+            <button
+                onClick={handleOpenMenu}
+                className="header__nav-button link"
+            ></button>
         </header>
     )
 }

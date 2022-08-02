@@ -5,12 +5,12 @@ import '../../../index.css';
 import HeaderLanding from './HeaderLanding/HeaderLanding';
 import HeaderMain from './HeaderMain/HeaderMain';
 
-const Header = () => {
+const Header = ({  handleShowMenu }) => {
   return useRoutes([
     { path: '/', element: <HeaderLanding /> },
-    { path: '/movies', element: <HeaderMain /> },
-    { path: '/saved-movies', element: <HeaderMain /> },
-    { path: '/profile', element: <HeaderMain /> },
+    { path: '/movies', element: <HeaderMain handleOpenMenu={handleShowMenu} /> },
+    { path: '/saved-movies', element: <HeaderMain handleOpenMenu={handleShowMenu} /> },
+    { path: '/profile', element: <HeaderMain handleOpenMenu={handleShowMenu} /> },
   ]
   )
 }
