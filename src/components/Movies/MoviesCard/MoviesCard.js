@@ -1,8 +1,6 @@
 import React from 'react';
 import './MoviesCard.css';
 import screenshot from '../../../images/movies/1.jpg'
-// import likeOn from '../../../images/likeOn.svg';
-// import likeOff from '../../../images/likeOff.svg';
 
 
 const MoviesCard = () => {
@@ -14,6 +12,8 @@ const MoviesCard = () => {
           <p className='movie-card__duration'>1ч 47м</p>
         </div>
         <button className='movie-card__icon movie-card__save link_button'></button>
+        {/* <button className="icon movie-card__unsave link_button"></button> */}
+        {/* <button className="icon movie-card__delete link_button"></button> */}
       </div>
       <img
         className='movie-card__img'
