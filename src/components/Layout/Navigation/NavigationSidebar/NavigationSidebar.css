@@ -1,0 +1,115 @@
+.nav-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+}
+
+.nav-sidebar__sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 70%;
+    min-width: 320px;
+    max-width: 520px;
+    background: var(--color-bg);
+    margin-left: auto;
+    color: var(--color-white);
+    box-sizing: border-box;
+    padding: 28px 28px 93px;
+}
+
+.nav-sidebar__sidebar-wrapper {
+    width: 100%;
+    text-align: center;
+}
+
+.nav-sidebar__button-exit {
+    display: block;
+    background-image: url(../../../../images//exit.svg);
+    width: 24px;
+    height: 24px;
+    background-position: center;
+    background-color: inherit;
+    border: none;
+    transition: 0, 2s ease-in-out;
+    margin-left: auto;
+}
+
+.nav-sidebar__navigation {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 109px;
+}
+
+.nav-sidebar__link {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    text-decoration: none;
+    color: var(--color-white);
+    margin-bottom: 28px;
+}
+
+.nav-sidebar__link-active {
+    cursor: default;
+    box-sizing: border-box;
+    pointer-events: none;
+    border-bottom: 2px solid var(--color-white);
+    margin: 0 auto;
+    margin-bottom: 22px;
+    padding-bottom: 4px;
+}
+
+.profile-link {
+    width: 100px;
+    height: 30px;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: space-between;
+    align-items: center;
+    /* margin-left: 30px; */
+}
+
+.profile-link__text {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 12px;
+    margin: 0;
+    margin-left: 11px;
+}
+
+.profile-link__icon {
+    width: 26px;
+    height: 26px;
+    background: var(--color-bg-light);
+    border-radius: 50px;
+    background-image: url(../../../../images/account.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-right: 3px;
+}
+
+@media screen and (max-width: 475px) {
+    .nav-sidebar__sidebar {
+        padding: 19px 19px 46px;
+    }
+
+    .nav-sidebar__navigation {
+        margin-top: 105px;
+    }
+
+    .nav-sidebar__link {
+        margin-bottom: 24px;
+    }
+
+    .nav-sidebar__link-active {
+        margin-bottom: 16px;
+    }
+}

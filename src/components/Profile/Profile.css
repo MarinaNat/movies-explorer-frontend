@@ -1,0 +1,119 @@
+.profile {
+    width: 410px;
+    max-height: 626px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 74px 0 70px;
+}
+
+/* .profile-form {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding-top: 40px;
+} */
+
+.profile__title {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+    margin-bottom: 106px;
+}
+
+.profile__container {
+    display: flex;
+    box-sizing: border-box;
+    justify-content: space-between;
+    padding: 17px 0;
+    border-bottom: 1px solid var(--color-line-dark-gray);
+    font-size: 11px;
+    line-height: 13px;
+    flex-wrap: nowrap;
+}
+
+.profile__label {
+    font-weight: 500;
+}
+
+.profile__input {
+    font-weight: 400;
+    width: 80%;
+    background: var(--color-bg);
+    border: none;
+    color: var(--color-white);
+    text-align: end;
+}
+
+
+.profile__container:last-of-type {
+    border-bottom: none;
+    margin-bottom: 203px;
+}
+
+
+.profile__button {
+    display: block;
+    margin: 0 auto 16px;
+    box-sizing: border-box;
+    /* padding: 2px; */
+    background-color: inherit;
+    border: none;
+    color: var(--color-white);
+    font-size: 13px;
+    line-height: 16px;
+}
+
+/* .profile__enter {
+    display: flex;
+    justify-content: center;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+} */
+
+.profile__button-edit {
+    font-weight: 400;
+}
+
+.profile__button-exit {
+    font-weight: 500;
+    color: var(--color-red);
+}
+
+@media screen and (max-width: 768px) {
+    .profile {
+        max-height: 950px;
+        padding: 236px 0 269px;
+    }
+
+    .profile__title {
+        margin: 0 0 79px 0;
+    }
+
+    .profile__container:last-of-type {
+        margin-bottom: 193px;
+    }
+}
+
+@media screen and (max-width: 475px) {
+    .profile {
+        width: 260px;
+        max-height: 706px;
+        padding: 70px 0 40px;
+    }
+
+    .profile__title {
+        margin: 0 0 63px 0;
+    }
+
+    .profile__container:last-of-type {
+        margin-bottom: 362px;
+    }
+
+    .profile__button {
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 15px;
+    }
+}
