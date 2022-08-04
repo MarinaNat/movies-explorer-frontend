@@ -24,7 +24,7 @@ const App = () => {
   return (
     <div className="page">
       <Header handleShowMenu={toggleMenu} />
-      {/* <main className='page-content'> */}
+      <main className='page-content'>
         <NavigationSidebar handleOpenMenu={toggleMenu} isMenuOpened={isMenuOpened} />
         <Routes>
           <Route
@@ -56,8 +56,7 @@ const App = () => {
             element={<NotFound />}
           ></Route>
         </Routes>
-      {/* </main> */}
-
+      </main>
       <Footer />
     </div>
   )
