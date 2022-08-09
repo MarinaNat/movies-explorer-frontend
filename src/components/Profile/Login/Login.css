@@ -64,6 +64,12 @@
     margin-top: 169px;
 }
 
+.login-form__button_disabled {
+    cursor: default;
+    background: var(--color-bg-button-disabled);
+    color: var(--color-button-disabled);
+  }
+
 .login-form__enter {
     display: flex;
     justify-content: center;

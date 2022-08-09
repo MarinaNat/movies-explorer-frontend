@@ -76,6 +76,16 @@
     font-weight: 400;
 }
 
+.profile__button-edit:hover {
+    opacity: 60%;
+    cursor: pointer;
+  }
+  
+  .profile__button-edit:disabled {
+    opacity: 30%;
+    cursor: default;
+  }
+
 .profile__button-exit {
     font-weight: 500;
     color: var(--color-red);
