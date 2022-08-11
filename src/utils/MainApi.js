@@ -110,7 +110,7 @@ class MainApi {
     }
 
     saveMovie(data) {
-        console.log('data in addMovies:', data)
+        console.log('data.trailerLink in saveMovie:', data.trailerLink)
         return fetch(`${this._baseUrl}/movies`, {
             method: "POST",
             headers: {
