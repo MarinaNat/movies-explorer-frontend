@@ -15,7 +15,7 @@ class MoviesApi {
     }
 
     getMovies() {
-        return fetch(`${this._baseUrl}/beatfilm-movies`, {
+        return fetch(this._baseUrl, {
             method: 'GET',
             headers: this._headers,
         })

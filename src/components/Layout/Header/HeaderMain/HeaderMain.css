@@ -56,6 +56,10 @@
     margin-right: 3px;
 }
 
+.header__nav-button {
+    display: none;
+}
+
 @media screen and (max-width: 768px) {
     .header__navigation {
         display: none;
