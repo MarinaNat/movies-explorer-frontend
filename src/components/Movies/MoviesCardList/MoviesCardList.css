@@ -29,6 +29,7 @@
         row-gap: 36px;
         max-width: 708px;
         margin-bottom: 30px;
+        grid-template-columns: repeat(auto-fit, 339px);
     }
 }
 
@@ -38,6 +39,7 @@
         row-gap: 16px;
         margin-bottom: 30px;
         max-width: 708px;
+        grid-template-columns: repeat(auto-fit, 300px);
 
     }
 }

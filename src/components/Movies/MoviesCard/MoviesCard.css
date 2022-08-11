@@ -92,7 +92,15 @@
 }
 
 @media screen and (max-width: 768px) {
-    .movie-card__link {
-        max-height: 339px;
+    .movie-card {
+        max-height: 258px;
+        max-width: 339px;
+    }
+}
+
+@media screen and (max-width: 475px) {
+    .movie-card {
+        max-height: 236px;
+        max-width: 300px;
     }
 }
