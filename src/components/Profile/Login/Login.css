@@ -87,6 +87,19 @@
     color: var(--color-blue);
 }
 
+.login-form__error {
+    opacity: 0;
+    color: var(--color-red);
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    margin-bottom: 69px;
+}
+
+.login-form__error_server {
+    opacity: 1;
+}
+
 @media screen and (max-width: 768px) {
     .login {
         min-height: 1024px;

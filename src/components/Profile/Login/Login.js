@@ -75,7 +75,7 @@ const Login = ({ onLogin }) => {
           required
           value={values.password || ''}
         />
-        <span className={`register-form__error ${!isValid ? 'register-form__error_server' : ''}`} >{showError()}</span>
+        <span className={`login-form__error ${!isValid ? 'login-form__error_server' : ''}`} >{showError()}</span>
         <button className={
               `${isValid
                 ? 'login-form__button link'

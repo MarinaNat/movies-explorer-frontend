@@ -1,35 +1,46 @@
-import { React, useEffect } from 'react';
+import  React  from 'react';
 import './Register.css';
 import Logo from '../../Logo/Logo';
 import { Link } from 'react-router-dom';
-// import isEmail from 'validator/es/lib/isEmail';
-import { useFormWithValidation } from '../../../utils/validation'
+import isEmail from 'validator/es/lib/isEmail';
+// import { useFormWithValidation } from '../../../utils/validation'
 
-function Register({ onRegister, error, setError, isLoading }) {
-  const { values, handleChange, errors, isValid } = useFormWithValidation();
+function Register({ onRegister }) {
+  const [values, setValues] = React.useState({});
+  const [errors, setErrors] = React.useState({});
+  const [isValid, setIsValid] = React.useState(false);
 
+  //проверка вводимых данных
+  const handleChange = (event) => {
+    const target = event.target;
+    const name = target.name;
+    const value = target.value;
 
-  const showNonEmptyErrors = () => {
+    if (name === 'email') {
+      if (!isEmail(value)) {
+        event.target.setCustomValidity('Некорректый E-mail');
+      } else {
+        event.target.setCustomValidity('');
+      }
+    }
+
+    setValues({ ...values, [name]: value });
+    setErrors({ ...errors, [name]: target.validationMessage });
+    setIsValid(target.closest('form').checkValidity());
+  };
+
+  //сабмит формы
+  const handleSubmit = (evt) => {
+    evt.preventDefault()
+    console.log("in login-handleSubmit", values);
+    onRegister(values.email, values.password)
+  }
+
+  const showError = () => {
     for (const key in errors) {
       if (errors[key]) return errors[key];
     }
   };
-
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-    onRegister(values);
-  };
-
-  useEffect(() => {
-    setError('');
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [values]);
-
-  console.log('\nvalues через имя ключа: ');
-  console.log(values['register-name']);
-
-  console.log('\nvalues через переменную, содержащую имя ключа: ');
-  console.log(values[Object.keys(values)[0]]);
 
 
   return (
@@ -80,24 +91,16 @@ function Register({ onRegister, error, setError, isLoading }) {
             value={values.password || ''}
             onChange={handleChange}
           />
-          {Object.values(errors).length > 0 && (
-            <span className='register-form__error'>
-              {showNonEmptyErrors()}
-            </span>
-          )}
-          {error && (
-            <span className="register-form__error register-form__error_server">
-              {error}
-            </span>
-          )}
+          <span className={`register-form__error ${!isValid ? 'register-form__error_server' : ''}`} >{showError()}</span>
           <button
             className={
-              (isValid && !error)
+              `${isValid
                 ? 'register-form__button link'
                 : 'register-form__button register-form__button_disabled'
+              }`
             }
             type='submit'
-            disabled={!isValid || isLoading || error}
+            disabled={!isValid ? true : ''}
           >
             Зарегистрироваться
           </button>
