@@ -57,18 +57,6 @@ class MainApi {
             .then(this._checkResponse);
     }
 
-    // Функция для проверки токена
-    // checkToken(token) {
-    //     return fetch(`${this._baseUrl}/users/me`, {
-    //         method: 'GET',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             'Authorization': `Bearer ${token}`,
-    //         }
-    //     })
-    //         .then(this._checkResponse);
-    // }
-
     getUserInfo() {
         return fetch(`${this._baseUrl}/users/me`, {
             method: "GET",
@@ -118,17 +106,17 @@ class MainApi {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             },
             body: JSON.stringify({
-                country: data.country,
-                director: data.director,
-                duration: data.duration,
-                year: data.year,
-                description: data.description,
+                country: data.country || ' ',
+                director: data.director || ' ',
+                duration: data.duration || 0,
+                year: data.year || ' ',
+                description: data.description || ' ',
                 image: `${this._apiURL}${data.image.url}`,
                 trailerLink: data.trailerLink,
                 thumbnail: `${this._apiURL}${data.image.formats.thumbnail.url}`,
                 movieId: data.id,
-                nameRU: data.nameRU,
-                nameEN: data.nameEN
+                nameRU: data.nameRU || ' ',
+                nameEN: data.nameEN || ' ',
             }),
         })
             .then((res) => res.json());
