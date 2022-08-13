@@ -17,7 +17,7 @@ class MainApi {
 
     register(data) {
         console.log('data in register')
-        console.log(data.name)
+        console.log(data)
         return fetch(`${this._baseUrl}/signup`, {
             method: "POST",
             headers: {
@@ -33,36 +33,43 @@ class MainApi {
             .then(this._checkResponse);
     };
 
-    login(email, password) {
+    login(data) {
+        console.log('data in login')
+        console.log(data)
         return fetch(`${this._baseUrl}/signin`, {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ email, password }),
+            body: JSON.stringify({
+                email: data.email,
+                password: data.password,
+            }),
         })
             .then(this._checkResponse);
     };
 
-    logout() {
-        return fetch(`${this._baseUrl}/signout`, {
-            method: 'POST',
-            credentials: 'include',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-        })
-            .then(this._checkResponse);
-    }
+    // logout() {
+    //     return fetch(`${this._baseUrl}/signout`, {
+    //         method: 'POST',
+    //         // credentials: 'include',
+    //         headers: {
+    //             'Accept': 'application/json',
+    //             'Content-Type': 'application/json',
+    //             'Authorization': `Bearer ${localStorage.getItem('token')}`,
+    //         },
+    //     })
+    //         .then(this._checkResponse);
+    // }
 
     getUserInfo() {
         return fetch(`${this._baseUrl}/users/me`, {
             method: "GET",
+            credentials: 'include',
             headers: {
                 "Content-Type": "application/json",
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
             }
         })
             .then(this._checkResponse);

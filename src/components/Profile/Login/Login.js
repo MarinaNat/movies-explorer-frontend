@@ -33,7 +33,7 @@ const Login = ({ onLogin }) => {
   const handleSubmit = (evt) => {
     evt.preventDefault()
     console.log("in login-handleSubmit", values);
-    onLogin(values.email, values.password)
+    onLogin(values)
   }
 
   const showError = () => {
@@ -44,6 +44,7 @@ const Login = ({ onLogin }) => {
 
   console.log('\nvalues через переменную, содержащую имя ключа: ');
   console.log(values[Object.keys(values)[0]]);
+  console.log(values[Object.keys(values)[1]]);
   return (
     <section className='login'>
       <Link to='/' className='login__logo'>

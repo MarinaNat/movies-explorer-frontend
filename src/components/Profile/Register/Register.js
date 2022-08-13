@@ -32,8 +32,8 @@ function Register({ onRegister }) {
   //сабмит формы
   const handleSubmit = (evt) => {
     evt.preventDefault()
-    console.log("in login-handleSubmit", values);
-    onRegister(values.email, values.password)
+    console.log("in register-handleSubmit", values);
+    onRegister(values)
   }
 
   const showError = () => {
