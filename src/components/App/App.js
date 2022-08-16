@@ -19,7 +19,7 @@ import ProtectedRoute from '../ProtectedRoute';
 import InfoTooltip from "../InfoTooltip/InfoTooltip";
 import unionFalse from "../../images/unionFalse.svg";
 import filterMovies from '../../utils/filterMovies';
-// import unionOk from '../../images/unionOk.svg';
+import unionOk from '../../images/ok.svg';
 
 const App = () => {
   let navigate = useNavigate();
@@ -36,27 +36,10 @@ const App = () => {
   const [searchedMovies, setSearchedMovies] = useState([]);
   const [movies, setMovies] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
+  const [success, setSuccess] = useState('');
 
   const toggleMenu = () => {
     setMenuOpened(!isMenuOpened);
-  };
-
-  //регистрация пользователя
-  function handleRegister(data) {
-    mainApi.register(data)
-      .then((res) => {
-        setCurrentUser(res);
-        setIsLoggedIn(true);
-        // handleLogin(data)
-        navigate("/signin");
-      })
-      .catch(() => {
-        setTooltipData({
-          img: unionFalse,
-          title: "Пользователь с таким email существует.",
-        });
-        handleInfoTooltip();
-      })
   };
 
   React.useEffect(() => {
@@ -71,8 +54,8 @@ const App = () => {
         console.log('res in getUserInfo')
         console.log(res)
         if (res) {
-          // const { name, email, _id } = res;
           setCurrentUser(res);
+          console.log('setCurrentUser in getUserInfo:', setCurrentUser(res))
           setIsLoggedIn(true);
           navigate("/movies");
           pathname === "/signin" || pathname === "/signup"
@@ -85,67 +68,6 @@ const App = () => {
         setIsLoggedIn(false);
       })
   };
-
-  //авторизация пользователя
-  function handleLogin(data) {
-    console.log('data in handleLogin: ')
-    console.log(data)
-    setIsLoading(true);
-    mainApi
-      .login(data)
-      .then((res) => {
-        console.log('res.token in handleLogin: ')
-        console.log(res.token)
-        if (res.token) {
-          localStorage.setItem('token', res.token);
-          setIsLoggedIn(true);
-          setCurrentUser(res);
-          console.log('setCurrentUser:', setCurrentUser)
-          navigate('/movies')
-        }
-      })
-      .catch(() => {
-        setTooltipData({
-          img: unionFalse,
-          title: 'Неправильный E-mail или пароль',
-        });
-        handleInfoTooltip()
-      })
-      .finally(() => setIsLoading(false))
-  }
-
-  //выход пользователя из аккаунта
-  const handleSignOut = () => {
-      setCurrentUser({});
-      setSavedMovies([]);
-      setSearchedMovies([]);
-      setIsLoggedIn(false);
-      localStorage.clear();
-      navigate('/');
-  }
-
-
-  //редактирование информации о пользователе
-  function handleUpdateUser(userData) {
-    console.log('userData: ', userData)
-    mainApi.updateUserInfo(userData)
-      .then(res => {
-        setCurrentUser(res)
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  }
-
-  //открытие попапа с информацией
-  function handleInfoTooltip() {
-    setIsTooltipOpened(true);
-  }
-
-  //закрытие попапа с информацией
-  function closeInfoTooltip() {
-    setIsTooltipOpened(false);
-  }
 
   useEffect(() => {
     if (localStorage.getItem('savedMovies')) {
@@ -181,6 +103,95 @@ const App = () => {
     }
   }, []);
 
+
+  //регистрация пользователя
+  function handleRegister(data) {
+    setIsLoading(true);
+    mainApi.register(data)
+      .then((res) => {
+        handleLogin(data)
+      })
+      .catch(() => {
+        setTooltipData({
+          img: unionFalse,
+          title: "Пользователь с таким email существует.",
+        });
+        handleInfoTooltip();
+      })
+      .finally(() => setIsLoading(false))
+  };
+
+  //авторизация пользователя
+  function handleLogin(values) {
+    console.log('data in handleLogin: ')
+    console.log(values)
+    setIsLoading(true);
+    mainApi
+      .login(values)
+      .then((res) => {
+        setCurrentUser(res);
+        console.log('res.token in handleLogin: ')
+        console.log(res.token)
+        console.log('res in handleLogin: ')
+        console.log(res)
+        // if (res.token) {
+          localStorage.setItem('token', res.token);
+          setIsLoggedIn(true);
+          navigate('/movies')
+        // }
+      })
+      .catch(() => {
+        setTooltipData({
+          img: unionFalse,
+          title: 'Неправильный E-mail или пароль',
+        });
+        handleInfoTooltip()
+      })
+      .finally(() => setIsLoading(false))
+  }
+
+  //выход пользователя из аккаунта
+  const handleSignOut = () => {
+    setCurrentUser({});
+    setSavedMovies([]);
+    setSearchedMovies([]);
+    setIsLoggedIn(false);
+    localStorage.clear();
+    navigate('/');
+  }
+
+
+  //редактирование информации о пользователе
+  function handleEditProfile(values) {
+    setIsLoading(true)
+    console.log('values in handleEditProfile: ', values)
+    mainApi.updateUserInfo(values)
+      .then(res => {
+        setCurrentUser(res)
+        setTooltipData({
+          img: unionOk,
+          title: 'Данные изменены!',
+        });
+        handleInfoTooltip()
+      })
+      .catch(err => {
+        setSuccess('');
+        console.log(err)
+      })
+      .finally(() => setIsLoading(false));
+  }
+
+  //открытие попапа с информацией
+  function handleInfoTooltip() {
+    setIsTooltipOpened(true);
+  }
+
+  //закрытие попапа с информацией
+  function closeInfoTooltip() {
+    setIsTooltipOpened(false);
+  }
+
+
   // movies
   const searchMovies = (req) => {
     if (!movies.length) {
@@ -206,7 +217,7 @@ const App = () => {
   };
 
   return (
-    <CurrentUserContext.Provider value={currentUser}>
+    <CurrentUserContext.Provider value={ currentUser }>
       <div className="page">
         <Header handleShowMenu={toggleMenu} isLoggedIn={isLoggedIn} />
         <main className='page-content'>
@@ -254,7 +265,8 @@ const App = () => {
                     setError={setError}
                     error={error}
                     onSignOut={handleSignOut}
-                    onEditProfile={handleUpdateUser}
+                    handleEditProfile={handleEditProfile}
+                    success={success}
                   />
                 </ProtectedRoute>
               }

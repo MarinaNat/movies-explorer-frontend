@@ -23,7 +23,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "npm run build && scp -r ./build/* marina@130.193.43.10:/home/marina/movies-explorer-frontend"
+    "deploy": "npm run build && scp -r ./build/* marina@51.250.102.40:/home/marina/movies-explorer-frontend"
   },
   "eslintConfig": {
     "extends": [

@@ -1,50 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Login.css';
 import '../Register/Register';
 import Logo from '../../Logo/Logo';
 import { Link } from 'react-router-dom';
-import isEmail from 'validator/es/lib/isEmail';
+import { useFormWithValidation } from '../../../utils/validation';
 
-const Login = ({ onLogin }) => {
-  const [values, setValues] = React.useState({});
-  const [errors, setErrors] = React.useState({});
-  const [isValid, setIsValid] = React.useState(false);
-
-  //проверка вводимых данных
-  const handleChange = (event) => {
-    const target = event.target;
-    const name = target.name;
-    const value = target.value;
-
-    if (name === 'email') {
-      if (!isEmail(value)) {
-        event.target.setCustomValidity('Некорректый E-mail');
-      } else {
-        event.target.setCustomValidity('');
-      }
-    }
-
-    setValues({ ...values, [name]: value });
-    setErrors({ ...errors, [name]: target.validationMessage });
-    setIsValid(target.closest('form').checkValidity());
-  };
-
-  //сабмит формы
-  const handleSubmit = (evt) => {
-    evt.preventDefault()
-    console.log("in login-handleSubmit", values);
-    onLogin(values)
-  }
-
-  const showError = () => {
+const Login = ({ onLogin, error, setError, isLoading  }) => {
+  const { values, handleChange, errors, isValid } = useFormWithValidation();
+  const showNonEmptyErrors = () => {
     for (const key in errors) {
       if (errors[key]) return errors[key];
     }
   };
 
-  console.log('\nvalues через переменную, содержащую имя ключа: ');
-  console.log(values[Object.keys(values)[0]]);
-  console.log(values[Object.keys(values)[1]]);
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    console.log("in login-handleSubmit", values);
+    onLogin(values);
+  };
+
+  useEffect(() => {
+    console.log('error');
+    console.log(error);
+    console.log('errors');
+    console.log(errors);
+    setError('');
+  }, [values]);
+
+  
   return (
     <section className='login'>
       <Link to='/' className='login__logo'>
@@ -52,7 +35,7 @@ const Login = ({ onLogin }) => {
       </Link>
       <form className='login-form' onSubmit={handleSubmit}>
         <h2 className='login-form__title'>Рады видеть!</h2>
-        <label className='login-form__label'>E-mail</label>
+        <label className='login-form__label' htmlFor='login-email'>E-mail</label>
         <input
           className='login-form__input'
           minLength='2'
@@ -76,7 +59,7 @@ const Login = ({ onLogin }) => {
           required
           value={values.password || ''}
         />
-        <span className={`login-form__error ${!isValid ? 'login-form__error_server' : ''}`} >{showError()}</span>
+        <span className={`login-form__error ${!isValid ? 'login-form__error_server' : ''}`} >{showNonEmptyErrors()}</span>
         <button className={
               `${isValid
                 ? 'login-form__button link'
@@ -84,7 +67,7 @@ const Login = ({ onLogin }) => {
               }`
             }
             type='submit'
-            disabled={!isValid ? true : ''}
+            disabled={!isValid || isLoading || error}
           >
           Войти
         </button>

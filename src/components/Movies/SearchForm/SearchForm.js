@@ -41,7 +41,7 @@ const SearchForm = ({ handleSearch, search, setSearch }) => {
                         name="search-form-input"
                         minLength="1"
                         onChange={handleSearchInputChange}
-                        value={innerSearch.query}
+                        value={innerSearch.query || ''}
                     />
                     <button type="submit" className="search-form__button link_button"></button>
                 </form>

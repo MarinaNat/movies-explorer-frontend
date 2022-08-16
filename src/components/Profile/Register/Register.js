@@ -3,9 +3,8 @@ import './Register.css';
 import Logo from '../../Logo/Logo';
 import { Link } from 'react-router-dom';
 import isEmail from 'validator/es/lib/isEmail';
-// import { useFormWithValidation } from '../../../utils/validation'
 
-function Register({ onRegister }) {
+function Register({ onRegister, isLoading, error }) {
   const [values, setValues] = React.useState({});
   const [errors, setErrors] = React.useState({});
   const [isValid, setIsValid] = React.useState(false);
@@ -100,7 +99,7 @@ function Register({ onRegister }) {
               }`
             }
             type='submit'
-            disabled={!isValid ? true : ''}
+            disabled={!isValid || isLoading || error}
           >
             Зарегистрироваться
           </button>

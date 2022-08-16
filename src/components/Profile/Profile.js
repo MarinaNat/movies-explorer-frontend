@@ -1,57 +1,33 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
 import './Profile.css';
+import { useFormWithValidation } from '../../utils/validation.js';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-const Profile = ({ onSignOut, onEditProfile }) => {
+const Profile = ({
+  onSignOut,
+  handleEditProfile,
+  success,
+  isLoading, }) => {
 
-  const currentUser = React.useContext(CurrentUserContext);
-  const [name, setName] = React.useState(currentUser.name);
-  const [previousName, setPreviousName] = React.useState(currentUser.name);
-  const [email, setEmail] = React.useState(currentUser.email);
-  const [previousEmail, setPreviousEmail] = React.useState(currentUser.email);
-  const [isActiveButton, setIsActiveButton] = React.useState(false);
+  const { values, handleChange, errors, isValid, setValues } =
+    useFormWithValidation();
 
-  //обновление данных, сохранение в локальном хранилище
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-    setIsActiveButton(false);
-    onEditProfile({ name, email });
-    localStorage.setItem('name', name)
-    localStorage.setItem('email', email)
+  const { name, email } = useContext(CurrentUserContext);
+
+  const showNonEmptyErrors = () => {
+    for (const key in errors) {
+      if (errors[key]) return errors[key];
+    }
   };
 
-  //ввод данных, сверка со старыми
-  function handleUserName(evt) {
-    const value = evt.target.value;
-    setName(value);
-    if (value !== previousName) {
-      setIsActiveButton(true);
-    } else {
-      setIsActiveButton(false);
-    }
-  }
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+   handleEditProfile(values);
+  };
 
-  //ввод данных, сверка со старыми
-  function handleUserEmail(evt) {
-    const value = evt.target.value;
-    setEmail(value);
-    if (value !== previousEmail) {
-      setIsActiveButton(true);
-    } else {
-      setIsActiveButton(false);
-    }
-  }
-
-  React.useEffect(() =>{
-    const localStorageName = localStorage.getItem('name');
-    if (localStorageName) {
-      setPreviousName(localStorageName);
-    }
-    const localStorageEmail = localStorage.getItem('email');
-    if (localStorageEmail) {
-      setPreviousEmail(localStorageEmail);
-    }
-  }, [])
+  useEffect(() => {
+    setValues({ name, email });
+  }, [name, email]);
 
   return (
     <section className='profile'>
@@ -63,12 +39,12 @@ const Profile = ({ onSignOut, onEditProfile }) => {
             className='profile__input'
             minLength='2'
             id='profile-name'
-            name='profile-name'
+            name='name'
             type='text'
             required
-            value={name}
+            value={values.name || ''}
             placeholder="Имя"
-            onChange={handleUserName}
+            onChange={handleChange}
           />
         </div>
         <div className='profile__container'>
@@ -77,16 +53,34 @@ const Profile = ({ onSignOut, onEditProfile }) => {
             className='profile__input'
             minLength='2'
             id='profile-email'
-            name='profile-email'
+            name='email'
             type='email'
             required
-            value={email}
+            value={values.email || ''}
             placeholder="email"
-            onChange={handleUserEmail}
+            onChange={handleChange}
           />
         </div>
-
-        <button className='profile__button profile__button-edit link' type='submit' disabled={!isActiveButton}>
+        {Object.values(errors).length > 0 && (
+          <span className="profile__error-text">
+            {showNonEmptyErrors()}
+          </span>
+        )}
+        {success && (
+          <span className="profile__success-text profile__success-text_server">
+            {success}
+          </span>
+        )}
+        <button
+          className={
+            !isValid || (values.name === name && values.email === email)
+              ? 'profile__button profile__button-edit profile__button-edit_disabled'
+              : 'profile__button profile__button-edit link'
+          }
+          type='submit'
+          disabled={
+            !isValid || (values.name === name && values.email === email) || isLoading
+          }>
           Редактировать
         </button>
         <button className='profile__button profile__button-exit link' type='submit' onClick={onSignOut}>
