@@ -38,6 +38,7 @@
     line-height: 20px;
     color: var(--color-text-gray);
     width: 100%;
+    outline:none;
 }
 
 .search-form__button {

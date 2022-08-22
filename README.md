@@ -6,4 +6,8 @@ https://www.figma.com/file/MOIPM7qfjSvjJoG8XZaacL/Diploma-(Copy)?node-id=891%3A3
 
 ## домен
 
-marina-movies-explorer.nomoredomains.xyz
+https://marina-movies-explorer.nomoredomains.xyz/
+
+## pull requests
+
+https://github.com/MarinaNat/movies-explorer-frontend/pull/3

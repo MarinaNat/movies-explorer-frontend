@@ -11,7 +11,7 @@
     width: 100%;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    grid-template-columns: repeat(auto-fit, 364px);
     column-gap: 24px;
     row-gap: 30px;
     height: 100%;
@@ -29,6 +29,7 @@
         row-gap: 36px;
         max-width: 708px;
         margin-bottom: 30px;
+        grid-template-columns: repeat(auto-fit, 339px);
     }
 }
 
@@ -38,6 +39,7 @@
         row-gap: 16px;
         margin-bottom: 30px;
         max-width: 708px;
+        grid-template-columns: repeat(auto-fit, 300px);
 
     }
 }
