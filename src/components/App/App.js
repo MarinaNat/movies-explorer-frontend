@@ -43,6 +43,8 @@ const App = () => {
   };
 
   React.useEffect(() => {
+    console.log('getUserInfo()');
+    console.log(getUserInfo());
     getUserInfo();
   }, []);
 

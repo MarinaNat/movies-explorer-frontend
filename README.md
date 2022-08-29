@@ -30,6 +30,14 @@ Movies Explorer - это интерактивная SPA-страница, на �
   - Функциональные компоненты;
   - Хуки.
 
+  ## Скриншот:
+
+<details><summary><b>Развернуть</b></summary>
+
+[![movies-explorer-frontend](https://raw.githubusercontent.com/MarinaNat/movies-explorer-frontend/main/.github/images/screenshot1.PNG)](https://MarinaNat.github.io/movies-explorer-frontend/)
+
+</details>
+
 ## Установка и запуск проекта:
 Клонировать репозиторий:
 
